@@ -528,7 +528,7 @@
   </div>
 
   <div class="hero-meta">
-    <span>Av. Pedro Goyena 389 esq. Beauchef</span>
+    <span>Yerbal 1074, Caballito</span>
     <span class="sep"></span>
     <span>Tel. 4924-2649</span>
     <span class="sep"></span>
@@ -579,8 +579,8 @@
             <div class="stat-l">Valoraciones 5 estrellas</div>
           </div>
           <div class="stat-b">
-            <div class="stat-n"><span class="count" data-target="2">2</span></div>
-            <div class="stat-l">Sedes en Caballito</div>
+            <div class="stat-n"><span class="count" data-target="20" data-prefix="+">+20</span></div>
+            <div class="stat-l">Años de experiencia</div>
           </div>
           <div class="stat-b">
             <div class="stat-n"><span class="count" data-target="12" data-prefix="+">+12</span></div>
@@ -651,7 +651,7 @@
           <span class="fb-l">Calificación Google</span>
         </div>
         <div class="fbadge fbb">
-          <span class="fb-n">2 sedes</span>
+          <span class="fb-n">Yerbal 1074</span>
           <span class="fb-l">Caballito · CABA</span>
         </div>
       </div>
@@ -912,28 +912,19 @@
 <section id="ubicacion" style="padding:0;">
   <div class="map-intro reveal">
     <span class="eyebrow">Dónde encontrarnos</span>
-    <h2 class="stitle">Dos sedes en<br><em>Caballito</em>, CABA.</h2>
+    <h2 class="stitle">Estamos en<br><em>Caballito</em>, CABA.</h2>
   </div>
-  <div class="sede-cards reveal d1">
+  <div class="sede-cards reveal d1" style="grid-template-columns: 1fr;">
     <div class="sede-card">
-      <h4>Sede Principal</h4>
-      <p class="sad">Av. Pedro Goyena 389<br>esq. Beauchef</p>
-      <p class="ssub">Caballito · CABA</p>
-    </div>
-    <div class="sede-card">
-      <h4>Sucursal</h4>
+      <h4>Nuestra sede</h4>
       <p class="sad">Yerbal 1074</p>
       <p class="ssub">Caballito · CABA</p>
     </div>
   </div>
   <div class="map-wrap reveal d2">
     <div class="map-box">
-      <div class="map-sw">
-        <button class="map-btn active" data-sede="goyena">Sede Goyena</button>
-        <button class="map-btn" data-sede="yerbal">Sucursal Yerbal</button>
-      </div>
       <iframe id="mapFrame"
-        src="https://www.google.com/maps?q=Av.+Pedro+Goyena+389,+Caballito,+Buenos+Aires&output=embed"
+        src="https://www.google.com/maps?q=Yerbal+1074,+Caballito,+Buenos+Aires&output=embed"
         allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
         title="La Quinta Pata · Mundovet - Ubicación"></iframe>
     </div>
@@ -1006,7 +997,6 @@
           <li><a href="https://wa.me/541131855874" target="_blank" rel="noopener">WhatsApp: 11 3185-5874</a></li>
           <li><a href="tel:+541149242649">Tel: 4924-2649</a></li>
           <li><a href="https://instagram.com/la_quintapata" target="_blank" rel="noopener">@la_quintapata</a></li>
-          <li><a href="#ubicacion">Goyena 389, Caballito</a></li>
           <li><a href="#ubicacion">Yerbal 1074, Caballito</a></li>
         </ul>
       </div>
@@ -1227,19 +1217,6 @@ document.getElementById('galSwipe').addEventListener('click', () => {
   track.scrollBy({ left: 320, behavior: 'smooth' });
 });
 
-// ── Map switcher ──
-const mapFrame = document.getElementById('mapFrame');
-const mapURLs  = {
-  goyena: 'https://www.google.com/maps?q=Av.+Pedro+Goyena+389,+Caballito,+Buenos+Aires&output=embed',
-  yerbal: 'https://www.google.com/maps?q=Yerbal+1074,+Caballito,+Buenos+Aires&output=embed',
-};
-document.querySelectorAll('.map-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.map-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    mapFrame.src = mapURLs[btn.dataset.sede];
-  });
-});
 </script>
 </body>
 </html>
