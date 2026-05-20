@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Quinta Pata · Mundovet · Veterinaria Caballito, CABA</title>
+  <meta name="description" content="Veterinaria en Caballito, CABA. Clínica general, cirugías, ecografías, cardiología, peluquería canina y más. +300 reseñas en Google. Tel: +54 11 4924-2649.">
+  <meta property="og:title" content="La Quinta Pata · Mundovet · Veterinaria en Caballito">
+  <meta property="og:description" content="Tu veterinaria de confianza en Caballito, CABA. Atención integral con especialidades, cirugías, laboratorio, farmacia y más.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#040e1b">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:       #040e1b;
+      --bg2:      #071426;
+      --card:     #0b1d33;
+      --card2:    #0f2540;
+      --teal:     #1fd4bc;
+      --teal2:    #15a899;
+      --orange:   #ff5e2b;
+      --cream:    #ece7dd;
+      --cream2:   #c4bdb1;
+      --muted:    #627d96;
+      --line:     #102030;
+      --gold:     #e8b858;
+      --serif:    'Syne', system-ui, sans-serif;
+      --sans:     'DM Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    ::selection { background: var(--teal); color: var(--bg); }
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Loader ── */
+    #loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--bg);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.4rem;
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.76,0,.24,1);
+    }
+    #loader.out { opacity: 0; transform: translateY(-100%); pointer-events: none; }
+    .ldr-paw { width: 64px; height: 64px; fill: var(--teal); animation: ldrBounce 1s ease-in-out infinite alternate; }
+    @keyframes ldrBounce {
+      from { transform: scale(0.88) translateY(5px); opacity: 0.7; }
+      to   { transform: scale(1.08) translateY(-5px); opacity: 1; }
+    }
+    .ldr-tracks { display: flex; align-items: flex-end; gap: 6px; }
+    .ldr-track { width: 14px; height: 14px; fill: var(--teal); opacity: 0; animation: ldrTrack 0.5s ease forwards; }
+    .ldr-track:nth-child(1) { animation-delay: 0.1s; }
+    .ldr-track:nth-child(2) { animation-delay: 0.25s; transform: translateY(7px); animation-name: ldrTrack2; }
+    .ldr-track:nth-child(3) { animation-delay: 0.4s; }
+    .ldr-track:nth-child(4) { animation-delay: 0.55s; transform: translateY(7px); animation-name: ldrTrack2; }
+    .ldr-track:nth-child(5) { animation-delay: 0.7s; }
+    @keyframes ldrTrack  { to { opacity: 0.55; transform: translateY(0) scale(1); } }
+    @keyframes ldrTrack2 { from { opacity: 0; } to { opacity: 0.55; transform: translateY(7px); } }
+    .ldr-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); animation: fadeUp 0.7s 0.5s both; }
+    .ldr-name span { color: var(--teal); }
+    .ldr-sub { font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--muted); animation: fadeUp 0.7s 0.7s both; }
+    .ldr-bar { width: 140px; height: 1px; background: var(--line); border-radius: 1px; overflow: hidden; animation: fadeUp 0.5s 0.3s both; }
+    .ldr-bar-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--orange)); width: 0; animation: ldrFill 2s cubic-bezier(.22,.61,.36,1) 0.3s forwards; }
+    @keyframes ldrFill { to { width: 100%; } }
+
+    /* ── Global elements ── */
+    .scroll-prog {
+      position: fixed; top: 0; left: 0; height: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--orange));
+      width: 0; z-index: 200; transition: width 0.1s linear;
+    }
+    /* Custom cursor */
+    .cur-dot {
+      position: fixed; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal); pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%); transition: opacity 0.2s;
+    }
+    .cur-ring {
+      position: fixed; width: 38px; height: 38px; border-radius: 50%;
+      border: 1.5px solid var(--teal); pointer-events: none; z-index: 9997;
+      transform: translate(-50%,-50%); opacity: 0.5;
+      transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s;
+    }
+    .cur-ring.hov { width: 58px; height: 58px; opacity: 0.9; border-color: var(--orange); }
+    .cur-halo {
+      position: fixed; top: 0; left: 0; width: 300px; height: 300px; border-radius: 50%;
+      pointer-events: none; z-index: 1;
+      background: radial-gradient(circle, rgba(31,212,188,0.08) 0%, transparent 65%);
+      transform: translate(-50%,-50%); mix-blend-mode: screen; opacity: 0; transition: opacity 0.4s;
+    }
+    @media (hover:hover) and (pointer:fine) {
+      body { cursor: none; }
+      .cur-dot, .cur-ring, .cur-halo { opacity: 1; }
+      .cur-halo { opacity: 1; }
+    }
+    #pawCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+
+    /* ── Keyframes ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+    @keyframes drift { 0%,100% { transform: translate(0,0) rotate(0deg); } 50% { transform: translate(22px,-22px) rotate(10deg); } }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes spinR { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+    @keyframes pulseRing { 0% { transform: scale(1); opacity: 0.6; } 80%,100% { transform: scale(1.85); opacity: 0; } }
+    @keyframes wordUp { to { transform: translateY(0); } }
+    @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes breathe { 0%,100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.14); opacity: 0.85; } }
+    @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+    @keyframes dotPulse { 0%,100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
+    @keyframes gradShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes eqAnim { from { transform: scaleY(var(--f,0.2)); } to { transform: scaleY(var(--t,1)); } }
+
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.08s; } .d2 { transition-delay: 0.16s; } .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; } .d5 { transition-delay: 0.4s; }  .d6 { transition-delay: 0.48s; }
+
+    /* ── Typography ── */
+    .eyebrow { font-family: var(--sans); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); }
+    h2.stitle { font-family: var(--serif); font-weight: 700; font-size: clamp(2.4rem,4.5vw,3.6rem); line-height: 1.05; letter-spacing: -0.02em; }
+    h2.stitle em { font-style: italic; font-weight: 400; color: var(--teal); }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 2.5rem;
+      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s, padding 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled { background: rgba(4,14,27,0.9); backdrop-filter: blur(16px) saturate(1.2); border-color: var(--line); padding: 0.9rem 2.5rem; }
+    .nav-logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; font-family: var(--serif); font-weight: 700; font-size: 1.05rem; color: var(--cream); }
+    .nav-logo svg { width: 26px; height: 26px; fill: var(--teal); flex-shrink: 0; }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
+    .nav-links a { color: var(--cream); text-decoration: none; font-size: 0.83rem; opacity: 0.68; transition: opacity 0.2s, color 0.2s; }
+    .nav-links a:hover { opacity: 1; color: var(--teal); }
+    .nav-cta { background: var(--teal) !important; color: var(--bg) !important; padding: 0.55rem 1.3rem !important; border-radius: 999px !important; opacity: 1 !important; font-weight: 600 !important; font-size: 0.8rem !important; transition: background 0.25s, transform 0.25s !important; }
+    .nav-cta:hover { background: var(--teal2) !important; transform: translateY(-1px); color: var(--bg) !important; }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 9rem 2rem 7rem; position: relative; overflow: hidden;
+    }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .hblob {
+      position: absolute; border-radius: 50%; filter: blur(90px); will-change: transform;
+    }
+    .hblob.b1 { width: 520px; height: 520px; top: -160px; left: -120px; background: rgba(31,212,188,0.12); animation: drift 16s ease-in-out infinite; }
+    .hblob.b2 { width: 420px; height: 420px; bottom: -100px; right: -100px; background: rgba(255,94,43,0.09); animation: drift 21s ease-in-out infinite reverse; }
+    .hblob.b3 { width: 260px; height: 260px; top: 38%; right: 18%; background: rgba(232,184,88,0.07); animation: float 12s ease-in-out infinite; }
+    #hero > * { position: relative; z-index: 2; }
+    .hero-eyebrow { margin-bottom: 2rem; animation: fadeUp 0.9s 0.2s both; }
+    .hero-title {
+      font-family: var(--serif); font-weight: 800;
+      font-size: clamp(4.2rem, 13vw, 10.5rem);
+      line-height: 0.92; letter-spacing: -0.03em; margin-bottom: 1.6rem;
+    }
+    .hero-title .ln1 { display: block; -webkit-text-stroke: 1px var(--cream); color: transparent; animation: fadeUp 1s 0.35s both; }
+    .hero-title .ln2 { display: block; color: var(--teal); animation: fadeUp 1s 0.5s both; }
+    .hero-desc { font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--cream2); max-width: 500px; margin: 0 auto 2.5rem; animation: fadeUp 0.9s 0.75s both; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.9s 1s both; }
+    .hero-meta { margin-top: 4rem; display: flex; align-items: center; gap: 1.2rem; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); animation: fadeUp 0.9s 1.2s both; flex-wrap: wrap; justify-content: center; }
+    .hero-meta .sep { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); }
+
+    /* hero floating cards */
+    .hcard {
+      position: absolute; background: rgba(11,29,51,0.78); backdrop-filter: blur(12px);
+      border: 1px solid rgba(31,212,188,0.2); border-radius: 12px; padding: 0.9rem 1.2rem;
+      z-index: 3; animation: floatY 5s ease-in-out infinite;
+    }
+    .hcard.ca { top: 22%; left: 3.5%; animation-delay: -1s; }
+    .hcard.cb { top: 60%; right: 3.5%; animation-delay: -2.5s; }
+    .hcard .cn { font-family: var(--serif); font-weight: 800; font-size: 1.7rem; color: var(--teal); line-height: 1; }
+    .hcard .cl { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 0.15rem; }
+
+    /* rotating badge */
+    .rot-badge { position: absolute; bottom: 2rem; right: 2.5rem; width: 115px; height: 115px; z-index: 3; animation: fadeUp 0.9s 1.5s both; pointer-events: none; }
+    .rot-badge .ring-txt { width: 100%; height: 100%; animation: spin 22s linear infinite; }
+    .rot-badge .badge-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 38px; height: 38px; background: var(--teal); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .rot-badge .badge-center svg { width: 20px; height: 20px; fill: var(--bg); }
+
+    /* ── Buttons ── */
+    .btn-wa {
+      background: #25D366; color: #fff;
+      padding: 1rem 2rem; border-radius: 999px;
+      font-family: var(--sans); font-size: 0.88rem; font-weight: 500;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem;
+      transition: transform 0.25s, box-shadow 0.3s, background 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .btn-wa::before { content: ''; position: absolute; inset: 0; background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%); transform: translateX(-100%); transition: transform 0.7s cubic-bezier(.22,.61,.36,1); }
+    .btn-wa:hover { background: #1db954; transform: translateY(-2px); box-shadow: 0 12px 26px -12px rgba(37,211,102,0.55); }
+    .btn-wa:hover::before { transform: translateX(100%); }
+    .btn-wa svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .btn-primary {
+      background: var(--teal); color: var(--bg);
+      padding: 1rem 2rem; border-radius: 999px;
+      font-family: var(--sans); font-size: 0.88rem; font-weight: 500;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: transform 0.25s, box-shadow 0.3s, background 0.25s;
+    }
+    .btn-primary:hover { background: var(--teal2); transform: translateY(-2px); box-shadow: 0 12px 26px -14px rgba(31,212,188,0.5); }
+    .btn-outline {
+      background: transparent; border: 1.5px solid rgba(236,231,221,0.28); color: var(--cream);
+      padding: 1rem 2rem; border-radius: 999px;
+      font-family: var(--sans); font-size: 0.88rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: border-color 0.25s, background 0.25s, color 0.25s;
+    }
+    .btn-outline:hover { border-color: var(--teal); background: rgba(31,212,188,0.09); color: var(--teal); }
+
+    /* ── Sections ── */
+    section { padding: 8rem 2.5rem; position: relative; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .sec-head { max-width: 680px; margin-bottom: 4.5rem; }
+    .sec-head .eyebrow { display: block; margin-bottom: 1.1rem; }
+
+    /* ── Marquee ── */
+    .marquee-strip { background: var(--teal); overflow: hidden; padding: 1.1rem 0; border-top: 1px solid var(--teal2); border-bottom: 1px solid var(--teal2); }
+    .marquee-track {
+      display: flex; gap: 2.5rem; white-space: nowrap;
+      animation: marqueeScroll 42s linear infinite; width: max-content;
+      font-family: var(--serif); font-size: clamp(1.1rem, 2.2vw, 1.7rem); font-weight: 700; color: var(--bg);
+    }
+    .marquee-track span { display: inline-flex; align-items: center; gap: 2.5rem; }
+    .marquee-track span::after { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: rgba(4,14,27,0.45); flex-shrink: 0; }
+
+    /* ── Nosotros ── */
+    #nosotros { background: var(--bg2); border-top: 1px solid var(--line); }
+    .nosotros-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .stats-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-bottom: 3rem; }
+    .stat-b { padding: 1.7rem 1.4rem 1.7rem 0; border-top: 1px solid var(--line); }
+    .stat-b:nth-child(-n+2) { border-top: none; }
+    .stat-n { font-family: var(--serif); font-size: 3rem; font-weight: 800; color: var(--teal); line-height: 1; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
+    .stat-l { font-size: 0.78rem; color: var(--cream2); letter-spacing: 0.04em; }
+    .equalizer { display: flex; align-items: flex-end; gap: 3px; height: 46px; margin-bottom: 2.5rem; }
+    .eq-bar { flex: 1; background: var(--teal); border-radius: 2px 2px 0 0; transform-origin: bottom; animation: eqAnim var(--dur,0.8s) ease-in-out infinite alternate; }
+    .nos-text p.lead { font-family: var(--serif); font-weight: 700; font-size: 1.45rem; line-height: 1.35; margin-bottom: 1.4rem; }
+    .nos-text p { font-size: 1rem; color: var(--cream2); margin-bottom: 1rem; max-width: 460px; }
+    .nos-text a.btn-primary { margin-top: 1rem; display: inline-flex; }
+
+    /* Animated vet visual */
+    .vet-anim {
+      position: relative; aspect-ratio: 1; border-radius: 14px; overflow: hidden;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(31,212,188,0.11) 0%, transparent 70%), var(--card);
+      border: 1px solid var(--line);
+    }
+    .vet-anim svg { width: 100%; height: 100%; display: block; }
+    .vring1 { animation: spin 36s linear infinite; transform-origin: center; }
+    .vring2 { animation: spinR 24s linear infinite; transform-origin: center; }
+    .vring3 { animation: spin 18s linear infinite; transform-origin: center; }
+    .vbreath { animation: breathe 5.5s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+    .vorbit1 { animation: spin 16s linear infinite; transform-origin: 200px 200px; }
+    .vorbit2 { animation: spinR 22s linear infinite; transform-origin: 200px 200px; }
+    .vanim-tag { position: absolute; top: 1rem; left: 1rem; z-index: 2; background: var(--teal); color: var(--bg); font-family: var(--sans); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.35rem 0.75rem; border-radius: 999px; }
+    .vanim-pulse { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--bg); margin-right: 0.4rem; vertical-align: 1px; animation: dotPulse 1.8s ease-in-out infinite; }
+    .fbadge { position: absolute; background: rgba(11,29,51,0.88); backdrop-filter: blur(10px); border: 1px solid rgba(31,212,188,0.25); border-radius: 10px; padding: 0.7rem 1rem; color: var(--cream); }
+    .fbadge.fba { bottom: -1.4rem; left: -1.4rem; animation: floatY 5s ease-in-out infinite; }
+    .fbadge.fbb { top: -1.4rem; right: -1.4rem; animation: floatY 5s 2s ease-in-out infinite; }
+    .fbadge .fb-n { font-family: var(--serif); font-weight: 800; font-size: 1.4rem; color: var(--teal); display: block; line-height: 1; }
+    .fbadge .fb-l { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 0.12rem; }
+
+    /* ── Servicios ── */
+    #servicios { background: var(--bg); overflow: hidden; }
+    #servicios::before {
+      content: 'MUNDOVET';
+      position: absolute; top: 8%; right: -2%;
+      font-family: var(--serif); font-weight: 800;
+      font-size: clamp(5rem, 14vw, 16rem); color: var(--bg2);
+      pointer-events: none; line-height: 1; white-space: nowrap; user-select: none;
+    }
+    #servicios .container { position: relative; z-index: 1; }
+    .services-main { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 1rem; }
+    .services-row  { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-bottom: 1rem; }
+    .services-row3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+
+    .scard {
+      background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+      padding: 1.8rem; display: flex; flex-direction: column; gap: 0.9rem;
+      transition: transform 0.4s cubic-bezier(.22,.61,.36,1), border-color 0.4s;
+      cursor: default; min-height: 220px; position: relative; overflow: hidden;
+    }
+    .scard::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(31,212,188,0.07) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
+    .scard:hover { transform: translateY(-8px); border-color: rgba(31,212,188,0.35); }
+    .scard:hover::after { opacity: 1; }
+    .scard.feat { background: var(--teal); border-color: var(--teal); }
+    .scard.feat .sc-icon { color: var(--bg); }
+    .scard.feat .sc-name, .scard.feat .sc-desc { color: var(--bg); }
+    .scard.feat:hover { background: var(--teal2); border-color: var(--teal2); }
+    .scard.sm { min-height: 160px; }
+    .sc-icon { width: 40px; height: 40px; color: var(--teal); flex-shrink: 0; }
+    .sc-name { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; color: var(--cream); line-height: 1.15; }
+    .sc-desc { font-size: 0.86rem; color: var(--cream2); line-height: 1.5; flex: 1; }
+
+    /* ── Gallery ── */
+    #galeria { background: var(--bg); padding: 4rem 0 7rem; overflow: hidden; }
+    .gal-header { max-width: 1200px; margin: 0 auto 2rem; padding: 0 2.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem; }
+    .gal-header h3 { font-family: var(--serif); font-weight: 700; font-size: clamp(1.9rem, 3.5vw, 2.8rem); line-height: 1.05; letter-spacing: -0.02em; }
+    .gal-header h3 em { font-style: italic; font-weight: 400; color: var(--teal); }
+    .gal-track { display: flex; gap: 1rem; padding: 0 2.5rem 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; cursor: grab; }
+    .gal-track:active { cursor: grabbing; }
+    .gal-track::-webkit-scrollbar { display: none; }
+    .gal-item { flex: 0 0 300px; aspect-ratio: 3/4; border-radius: 10px; overflow: hidden; scroll-snap-align: start; position: relative; background: var(--card); transition: transform 0.4s cubic-bezier(.22,.61,.36,1); }
+    .gal-item:hover { transform: translateY(-6px); }
+    .gal-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.85) saturate(0.8); transition: transform 0.7s cubic-bezier(.22,.61,.36,1), filter 0.4s; }
+    .gal-item:hover img { transform: scale(1.07); filter: brightness(1) saturate(0.95); }
+    .gal-cap { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 1.2rem 1rem; background: linear-gradient(to top, rgba(4,14,27,0.82) 0%, transparent 100%); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(236,231,221,0.75); display: flex; justify-content: space-between; align-items: flex-end; }
+    .gal-cap .gn { font-family: var(--serif); font-size: 1rem; font-weight: 700; letter-spacing: 0; text-transform: none; }
+    .gal-swipe { display: inline-flex; align-items: center; gap: 0.9rem; padding: 0.8rem 1.3rem 0.8rem 1.5rem; background: var(--teal); color: var(--bg); border-radius: 999px; font-family: var(--sans); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; user-select: none; transition: background 0.25s, transform 0.25s; }
+    .gal-swipe:hover { background: var(--teal2); transform: translateY(-2px); }
+    .gal-arr { width: 32px; height: 32px; border-radius: 50%; background: var(--bg); color: var(--teal); display: flex; align-items: center; justify-content: center; font-size: 1rem; position: relative; }
+    .gal-arr::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--bg); animation: pulseRing 2.2s ease-out infinite; }
+
+    /* ── Reviews ── */
+    #testimonios { background: var(--bg2); border-top: 1px solid var(--line); }
+    .rev-summary { display: flex; align-items: center; gap: 1.8rem; padding: 1.4rem 1.8rem; background: var(--card); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 2.5rem; max-width: 680px; flex-wrap: wrap; }
+    .ggl-logo { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--cream); }
+    .rev-score { font-family: var(--serif); font-size: 2.1rem; font-weight: 800; color: var(--cream); line-height: 1; }
+    .rev-stars { color: #f5a623; font-size: 0.88rem; letter-spacing: 2px; }
+    .rev-count { font-size: 0.72rem; color: var(--muted); margin-top: 0.1rem; }
+    .rev-link { margin-left: auto; font-size: 0.78rem; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--muted); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
+    .rev-link:hover { color: var(--teal); border-color: var(--teal); }
+    .vline { width: 1px; height: 34px; background: var(--line); }
+    .revs-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+    .rev-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; }
+    .rev-card:hover { transform: translateY(-4px); border-color: rgba(31,212,188,0.3); box-shadow: 0 16px 30px -22px rgba(0,0,0,0.6); }
+    .rev-head { display: flex; align-items: center; gap: 0.8rem; }
+    .rev-av { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--sans); font-size: 0.88rem; font-weight: 600; color: #fff; flex-shrink: 0; }
+    .rev-av.a1 { background: #2e7d9e; } .rev-av.a2 { background: #7b4e8c; } .rev-av.a3 { background: #3d8c5c; } .rev-av.a4 { background: #a65c3a; }
+    .rev-author { font-size: 0.86rem; font-weight: 600; color: var(--cream); }
+    .rev-meta { font-size: 0.7rem; color: var(--muted); }
+    .rev-stars-row { display: flex; align-items: center; gap: 0.5rem; }
+    .rev-stars-row .st { color: #f5a623; font-size: 0.8rem; letter-spacing: 1px; }
+    .rev-stars-row .dt { font-size: 0.7rem; color: var(--muted); }
+    .rev-text { font-size: 0.88rem; color: var(--cream2); line-height: 1.55; flex: 1; }
+
+    /* ── Horarios ── */
+    #horarios { background: var(--bg); }
+    .hor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .hor-table { width: 100%; border-collapse: collapse; }
+    .hor-table tr { border-bottom: 1px solid var(--line); }
+    .hor-table tr:last-child { border-bottom: none; }
+    .hor-table td { padding: 1rem 0; font-size: 0.93rem; color: var(--cream2); }
+    .hor-table .day { color: var(--cream); font-weight: 500; }
+    .hor-table .time { text-align: right; font-family: var(--serif); font-weight: 700; color: var(--teal); font-size: 1rem; }
+    .hor-table .closed { color: var(--muted); }
+    .contact-items { margin-top: 2.5rem; }
+    .citem { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--cream); transition: color 0.2s; }
+    .citem:last-child { border-bottom: none; }
+    .citem:hover { color: var(--teal); }
+    .citem-ico { width: 40px; height: 40px; border-radius: 10px; background: var(--card); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--teal); transition: background 0.25s, border-color 0.25s; }
+    .citem:hover .citem-ico { background: rgba(31,212,188,0.1); border-color: rgba(31,212,188,0.4); }
+    .citem-ico svg { width: 18px; height: 18px; }
+    .citem-lbl { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.1rem; }
+    .citem-val { font-size: 0.94rem; font-weight: 500; }
+
+    /* ── Mapa ── */
+    #ubicacion { background: var(--bg2); padding: 0; }
+    .map-intro { padding: 7rem 2.5rem 2.5rem; max-width: 1200px; margin: 0 auto; }
+    .map-intro h2.stitle { margin-top: 1rem; }
+    .sede-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 1200px; margin: 0 auto 1.5rem; padding: 0 2.5rem; }
+    .sede-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 1.4rem 1.6rem; transition: border-color 0.3s; }
+    .sede-card:hover { border-color: rgba(31,212,188,0.4); }
+    .sede-card h4 { font-family: var(--serif); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem; }
+    .sede-card .sad { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; color: var(--cream); line-height: 1.2; margin-bottom: 0.3rem; }
+    .sede-card .ssub { font-size: 0.83rem; color: var(--muted); }
+    .map-wrap { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem 6rem; }
+    .map-box { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); height: 460px; }
+    .map-box iframe { width: 100%; height: 100%; border: none; }
+    .map-sw { position: absolute; top: 1rem; left: 1rem; z-index: 2; display: flex; gap: 0.3rem; background: rgba(11,29,51,0.92); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 999px; padding: 0.3rem; }
+    .map-btn { padding: 0.42rem 1rem; border-radius: 999px; border: none; background: transparent; font-family: var(--sans); font-size: 0.76rem; color: var(--cream); cursor: pointer; transition: background 0.25s, color 0.25s; }
+    .map-btn.active { background: var(--teal); color: var(--bg); }
+    .map-btn:not(.active):hover { background: rgba(31,212,188,0.12); color: var(--teal); }
+
+    /* ── CTA ── */
+    #contacto {
+      background: linear-gradient(135deg, #081e14 0%, #040e1b 45%, #0a1e34 100%);
+      background-size: 200% 200%; animation: gradShift 14s ease infinite;
+      text-align: center; padding: 10rem 2rem; position: relative; overflow: hidden;
+    }
+    #contacto::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(31,212,188,0.13) 0%, transparent 65%); pointer-events: none; }
+    #contacto .container { position: relative; }
+    #contacto .eyebrow { color: rgba(31,212,188,0.55); display: block; margin-bottom: 1.4rem; }
+    #contacto h2.stitle { color: var(--cream); margin-bottom: 1.4rem; }
+    #contacto h2.stitle em { color: var(--teal); }
+    #contacto p.lede { font-size: 1.08rem; color: rgba(196,189,177,0.7); max-width: 460px; margin: 0 auto 2.5rem; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-tel { background: rgba(31,212,188,0.09); border: 1.5px solid rgba(31,212,188,0.35); color: var(--teal); padding: 1rem 2rem; border-radius: 999px; font-family: var(--sans); font-size: 0.88rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: background 0.25s, transform 0.25s; }
+    .btn-tel:hover { background: rgba(31,212,188,0.18); transform: translateY(-2px); }
+    .soc-links { display: flex; gap: 1.2rem; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; }
+    .soc-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: rgba(196,189,177,0.5); text-decoration: none; border-bottom: 1px solid rgba(196,189,177,0.2); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+    .soc-link:hover { color: var(--teal); border-color: var(--teal); }
+
+    /* ── Footer ── */
+    footer { background: var(--bg); border-top: 1px solid var(--line); padding: 4rem 2.5rem 2rem; }
+    .foot-inner { max-width: 1200px; margin: 0 auto; }
+    .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3.5rem; }
+    .foot-brand { display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.7rem; }
+    .foot-brand svg { width: 24px; height: 24px; fill: var(--teal); }
+    .foot-brand-name { font-family: var(--serif); font-weight: 700; font-size: 1rem; color: var(--cream); }
+    .foot-brand-name span { color: var(--teal); }
+    .foot-tag { font-size: 0.83rem; color: var(--muted); max-width: 230px; line-height: 1.5; }
+    .foot-col h4 { font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 1.1rem; }
+    .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+    .foot-col a { font-size: 0.88rem; color: var(--cream2); text-decoration: none; transition: color 0.2s; }
+    .foot-col a:hover { color: var(--teal); }
+    .foot-bottom { border-top: 1px solid var(--line); padding-top: 1.6rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.75rem; color: var(--muted); }
+
+    /* ── Float WA ── */
+    .float-wa { position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 99; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 8px 22px -8px rgba(37,211,102,0.65); animation: fadeUp 0.8s 2.5s both; transition: transform 0.25s, box-shadow 0.25s; }
+    .float-wa::before { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #25D366; animation: pulseRing 2.5s ease-out infinite; }
+    .float-wa svg { width: 26px; height: 26px; fill: #fff; }
+    .float-wa:hover { transform: scale(1.1); box-shadow: 0 12px 28px -8px rgba(37,211,102,0.75); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .services-row  { grid-template-columns: repeat(2,1fr); }
+      .services-row3 { grid-template-columns: repeat(2,1fr); }
+      .revs-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0.9rem 1.2rem; }
+      nav.scrolled { padding: 0.7rem 1.2rem; }
+      .nav-links li:not(:last-child) { display: none; }
+      section { padding: 5rem 1.4rem; }
+      .nosotros-grid, .hor-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .nos-visual { max-width: 400px; margin: 0 auto; }
+      .services-main { grid-template-columns: 1fr; }
+      .services-row, .services-row3 { grid-template-columns: 1fr 1fr; }
+      .revs-grid { grid-template-columns: 1fr; }
+      .foot-grid { grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+      .sede-cards { grid-template-columns: 1fr; }
+      .rot-badge, .hcard { display: none; }
+      .map-intro { padding: 5rem 1.4rem 2rem; }
+      .map-wrap { padding: 0 1.4rem 4rem; }
+    }
+    @media (max-width: 480px) {
+      .gal-item { flex: 0 0 82vw; }
+      .foot-grid { grid-template-columns: 1fr; }
+      .services-row, .services-row3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <svg class="ldr-paw" viewBox="0 0 100 100"><ellipse cx="50" cy="62" rx="22" ry="18"/><ellipse cx="25" cy="42" rx="10" ry="8"/><ellipse cx="40" cy="32" rx="10" ry="8"/><ellipse cx="60" cy="32" rx="10" ry="8"/><ellipse cx="75" cy="42" rx="10" ry="8"/></svg>
+  <div class="ldr-tracks">
+    <svg class="ldr-track" viewBox="0 0 100 100"><ellipse cx="50" cy="62" rx="22" ry="18"/><ellipse cx="25" cy="42" rx="10" ry="8"/><ellipse cx="40" cy="32" rx="10" ry="8"/><ellipse cx="60" cy="32" rx="10" ry="8"/><ellipse cx="75" cy="42" rx="10" ry="8"/></svg>
+    <svg class="ldr-track" viewBox="0 0 100 100"><ellipse cx="50" cy="62" rx="22" ry="18"/><ellipse cx="25" cy="42" rx="10" ry="8"/><ellipse cx="40" cy="32" rx="10" ry="8"/><ellipse cx="60" cy="32" rx="10" ry="8"/><ellipse cx="75" cy="42" rx="10" ry="8"/></svg>
+    <svg class="ldr-track" viewBox="0 0 100 100"><ellipse cx="50" cy="62" rx="22" ry="18"/><ellipse cx="25" cy="42" rx="10" ry="8"/><ellipse cx="40" cy="32" rx="10" ry="8"/><ellipse cx="60" cy="32" rx="10" ry="8"/><ellipse cx="75" cy="42" rx="10" ry="8"/></svg>
+    <svg class="ldr-track" viewBox="0 0 100 100"><ellipse cx="50" cy="62" rx="22" ry="18"/><ellipse cx="25" cy="42" rx="10" ry="8"/><ellipse cx="40" cy="32" rx="10" ry="8"/><ellipse cx="60" cy="32" rx="10" ry="8"/><ellipse cx="75" cy="42" rx="10" ry="8"/></svg>
+    <svg class="ldr-track" viewBox="0 0 100 100"><ellipse cx="50" cy="62" rx="22" ry="18"/><ellipse cx="25" cy="42" rx="10" ry="8"/><ellipse cx="40" cy="32" rx="10" ry="8"/><ellipse cx="60" cy="32" rx="10" ry="8"/><ellipse cx="75" cy="42" rx="10" ry="8"/></svg>
+  </div>
+  <p class="ldr-name">La Quinta <span>Pata</span></p>
+  <p class="ldr-sub">Mundovet · Veterinaria</p>
+  <div class="ldr-bar"><div class="ldr-bar-fill"></div></div>
+</div>
+
+<!-- Global elements -->
+<div class="scroll-prog" id="scrollProg"></div>
+<div class="cur-dot"  id="curDot"></div>
+<div class="cur-ring" id="curRing"></div>
+<div class="cur-halo" id="curHalo"></div>
+<canvas id="pawCanvas"></canvas>
+
+<!-- Nav -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <svg viewBox="0 0 100 100"><ellipse cx="50" cy="62" rx="22" ry="18"/><ellipse cx="25" cy="42" rx="10" ry="8"/><ellipse cx="40" cy="32" rx="10" ry="8"/><ellipse cx="60" cy="32" rx="10" ry="8"/><ellipse cx="75" cy="42" rx="10" ry="8"/></svg>
+    La Quinta <span>Pata</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#testimonios">Reseñas</a></li>
+    <li><a href="#horarios">Contacto</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="https://wa.me/541131855874?text=Hola!%20Quiero%20consultar%20un%20turno." target="_blank" rel="noopener" class="nav-cta">Turno WhatsApp</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hblob b1" data-depth="0.04"></div>
+    <div class="hblob b2" data-depth="0.06"></div>
+    <div class="hblob b3" data-depth="0.05"></div>
+  </div>
+
+  <!-- floating stat cards -->
+  <div class="hcard ca" style="animation: floatY 5s -1s ease-in-out infinite;">
+    <div class="cn">+300</div>
+    <div class="cl">Reseñas Google</div>
+  </div>
+  <div class="hcard cb" style="animation: floatY 5s -2.5s ease-in-out infinite;">
+    <div class="cn">76%</div>
+    <div class="cl">Valoraciones 5★</div>
+  </div>
+
+  <p class="eyebrow hero-eyebrow">Veterinaria · Caballito · CABA</p>
+
+  <h1 class="hero-title">
+    <span class="ln1">La Quinta</span>
+    <span class="ln2">Pata</span>
+  </h1>
+
+  <p class="hero-desc">Tu veterinaria de confianza en Caballito. Atención integral, especialidades, cirugías, peluquería y farmacia — todo en un solo lugar.</p>
+
+  <div class="hero-btns">
+    <a href="https://wa.me/541131855874?text=Hola!%20Quiero%20consultar%20un%20turno%20en%20La%20Quinta%20Pata." target="_blank" rel="noopener" class="btn-wa magnetic">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1.1-.2.2-.3.2-.5.1-1.5-.7-2.4-1.3-3.4-3-.3-.4.3-.4.7-1.4.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3 2 3.1 4.9 4.3c1.7.7 2.4.8 3.3.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+      Pedir turno por WhatsApp
+    </a>
+    <a href="#servicios" class="btn-outline magnetic">Ver todos los servicios</a>
+  </div>
+
+  <div class="hero-meta">
+    <span>Av. Pedro Goyena 389 esq. Beauchef</span>
+    <span class="sep"></span>
+    <span>Tel. 4924-2649</span>
+    <span class="sep"></span>
+    <span>Lun–Vie 9 a 18 · Sáb 9 a 15</span>
+  </div>
+
+  <!-- Rotating badge -->
+  <div class="rot-badge">
+    <svg class="ring-txt" viewBox="0 0 120 120">
+      <defs>
+        <path id="circ" d="M 60,60 m -46,0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0"/>
+      </defs>
+      <text font-family="Syne, sans-serif" font-size="10.5" font-weight="600" fill="#1fd4bc" letter-spacing="2.8">
+        <textPath href="#circ">VETERINARIA · CABALLITO · MUNDOVET ·</textPath>
+      </text>
+    </svg>
+    <div class="badge-center">
+      <svg viewBox="0 0 100 100"><ellipse cx="50" cy="62" rx="22" ry="18"/><ellipse cx="25" cy="42" rx="10" ry="8"/><ellipse cx="40" cy="32" rx="10" ry="8"/><ellipse cx="60" cy="32" rx="10" ry="8"/><ellipse cx="75" cy="42" rx="10" ry="8"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Clínica General</span><span>Cirugías</span><span>Ecografías</span><span>Radiología</span><span>Laboratorio</span><span>Cardiología</span><span>Oftalmología</span><span>Fisioterapia</span><span>Acupuntura</span><span>Homeopatía</span><span>Peluquería Canina</span><span>Farmacia</span><span>Pet Shop</span>
+    <span>Clínica General</span><span>Cirugías</span><span>Ecografías</span><span>Radiología</span><span>Laboratorio</span><span>Cardiología</span><span>Oftalmología</span><span>Fisioterapia</span><span>Acupuntura</span><span>Homeopatía</span><span>Peluquería Canina</span><span>Farmacia</span><span>Pet Shop</span>
+  </div>
+</div>
+
+<!-- Nosotros / Stats -->
+<section id="nosotros">
+  <div class="container">
+    <div class="nosotros-grid">
+
+      <!-- LEFT: text + stats + equalizer -->
+      <div class="nos-text reveal">
+        <p class="eyebrow" style="margin-bottom:1.1rem;">Quiénes somos</p>
+        <h2 class="stitle" style="margin-bottom:2.5rem;">Atención <em>real</em><br>para cada mascota.</h2>
+
+        <div class="stats-4">
+          <div class="stat-b">
+            <div class="stat-n"><span class="count" data-target="300" data-prefix="+">+300</span></div>
+            <div class="stat-l">Reseñas en Google</div>
+          </div>
+          <div class="stat-b">
+            <div class="stat-n"><span class="count" data-target="76" data-suffix="%">76%</span></div>
+            <div class="stat-l">Valoraciones 5 estrellas</div>
+          </div>
+          <div class="stat-b">
+            <div class="stat-n"><span class="count" data-target="2">2</span></div>
+            <div class="stat-l">Sedes en Caballito</div>
+          </div>
+          <div class="stat-b">
+            <div class="stat-n"><span class="count" data-target="12" data-prefix="+">+12</span></div>
+            <div class="stat-l">Especialidades médicas</div>
+          </div>
+        </div>
+
+        <div class="equalizer" id="equalizer">
+          <!-- bars generated by JS -->
+        </div>
+
+        <p class="lead">Más de dos décadas al lado de tus animales.</p>
+        <p>En La Quinta Pata / Mundovet combinamos tecnología de punta con un equipo de profesionales apasionados. Desde una consulta de rutina hasta una cirugía compleja, tu mascota está en las mejores manos.</p>
+        <p>Contamos con laboratorio propio, equipos de diagnóstico por imagen, especialistas en cardiología, oftalmología, fisioterapia, acupuntura y mucho más.</p>
+        <a href="https://wa.me/541131855874?text=Hola!%20Quiero%20consultar%20un%20turno." target="_blank" rel="noopener" class="btn-primary" style="margin-top:1.4rem;">Pedí tu turno →</a>
+      </div>
+
+      <!-- RIGHT: animated visual -->
+      <div class="nos-visual reveal d2" style="position:relative; padding: 1.5rem;">
+        <div class="vet-anim">
+          <span class="vanim-tag"><span class="vanim-pulse"></span>En línea · Turnos disponibles</span>
+          <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#1fd4bc" stop-opacity="0.7"/>
+                <stop offset="100%" stop-color="#1fd4bc" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ff5e2b" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#ff5e2b" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <!-- background glow -->
+            <circle class="vbreath" cx="200" cy="200" r="120" fill="url(#glow1)"/>
+            <circle cx="290" cy="120" r="60" fill="url(#glow2)" style="animation: breathe 7s 2s ease-in-out infinite; transform-origin:290px 120px; transform-box:fill-box;"/>
+            <!-- outer rings -->
+            <g class="vring1"><circle cx="200" cy="200" r="170" fill="none" stroke="#1fd4bc" stroke-opacity="0.22" stroke-width="0.8" stroke-dasharray="3 8"/></g>
+            <g class="vring2"><circle cx="200" cy="200" r="135" fill="none" stroke="#1fd4bc" stroke-opacity="0.4" stroke-width="0.8"/><circle cx="200" cy="65" r="4" fill="#1fd4bc"/></g>
+            <g class="vring3"><circle cx="200" cy="200" r="95" fill="none" stroke="#1fd4bc" stroke-opacity="0.3" stroke-width="0.8" stroke-dasharray="1 5"/></g>
+            <!-- core -->
+            <g style="animation: breathe 5s ease-in-out infinite; transform-origin:200px 200px; transform-box:fill-box;">
+              <circle cx="200" cy="200" r="55" fill="none" stroke="#1fd4bc" stroke-width="1.2"/>
+              <circle cx="200" cy="200" r="35" fill="#1fd4bc" fill-opacity="0.08"/>
+            </g>
+            <!-- large paw in center -->
+            <g transform="translate(168, 165) scale(0.64)" fill="#1fd4bc" fill-opacity="0.7">
+              <ellipse cx="50" cy="62" rx="22" ry="18"/>
+              <ellipse cx="25" cy="42" rx="10" ry="8"/>
+              <ellipse cx="40" cy="32" rx="10" ry="8"/>
+              <ellipse cx="60" cy="32" rx="10" ry="8"/>
+              <ellipse cx="75" cy="42" rx="10" ry="8"/>
+            </g>
+            <!-- cross / plus (medical) -->
+            <g opacity="0.35" transform="translate(260,240)">
+              <rect x="-3" y="-12" width="6" height="24" rx="3" fill="#ff5e2b"/>
+              <rect x="-12" y="-3" width="24" height="6" rx="3" fill="#ff5e2b"/>
+            </g>
+            <!-- orbiting dots -->
+            <g class="vorbit1"><circle cx="200" cy="30" r="5" fill="#1fd4bc"/></g>
+            <g class="vorbit2"><circle cx="30" cy="200" r="3.5" fill="#1fd4bc" fill-opacity="0.55"/><circle cx="370" cy="200" r="2.5" fill="#1fd4bc" fill-opacity="0.4"/></g>
+            <!-- cross lines -->
+            <line x1="30" y1="200" x2="370" y2="200" stroke="#1fd4bc" stroke-opacity="0.1" stroke-width="0.5" stroke-dasharray="1 4"/>
+            <line x1="200" y1="30" x2="200" y2="370" stroke="#1fd4bc" stroke-opacity="0.1" stroke-width="0.5" stroke-dasharray="1 4"/>
+          </svg>
+        </div>
+        <div class="fbadge fba">
+          <span class="fb-n">4.7<span style="font-size:1rem;opacity:.6;">★</span></span>
+          <span class="fb-l">Calificación Google</span>
+        </div>
+        <div class="fbadge fbb">
+          <span class="fb-n">2 sedes</span>
+          <span class="fb-l">Caballito · CABA</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Servicios -->
+<section id="servicios">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Lo que ofrecemos</span>
+      <h2 class="stitle">Atención integral<br>de <em>principio a fin</em>.</h2>
+    </div>
+
+    <!-- Main 3 featured -->
+    <div class="services-main">
+      <!-- Clínica General -->
+      <div class="scard feat reveal">
+        <svg class="sc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <div class="sc-name">Clínica General</div>
+        <div class="sc-desc">Consultas generales, diagnóstico y seguimiento de la salud de tu mascota con un equipo de veterinarios especializados.</div>
+      </div>
+      <!-- Cirugías -->
+      <div class="scard reveal d1">
+        <svg class="sc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/><circle cx="12" cy="12" r="10"/></svg>
+        <div class="sc-name">Cirugías</div>
+        <div class="sc-desc">Quirófano equipado con tecnología de última generación. Cirugías de tejidos blandos, ortopédicas y reconstructivas.</div>
+      </div>
+      <!-- Diagnóstico por imágenes -->
+      <div class="scard reveal d2">
+        <svg class="sc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div class="sc-name">Ecografías &amp; Radiología</div>
+        <div class="sc-desc">Diagnóstico por imágenes de alta precisión. Ecografía abdominal, torácica y radiografías digitales en el momento.</div>
+      </div>
+    </div>
+
+    <!-- Row of 4 smaller -->
+    <div class="services-row">
+      <div class="scard sm reveal">
+        <svg class="sc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div class="sc-name">Cardiología</div>
+        <div class="sc-desc">ECG, ecocardiografía y seguimiento de enfermedades cardíacas.</div>
+      </div>
+      <div class="scard sm reveal d1">
+        <svg class="sc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
+        <div class="sc-name">Oftalmología</div>
+        <div class="sc-desc">Examen ocular completo, tonometría y cirugías oculares especializadas.</div>
+      </div>
+      <div class="scard sm reveal d2">
+        <svg class="sc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+        <div class="sc-name">Fisioterapia</div>
+        <div class="sc-desc">Rehabilitación física post-quirúrgica y tratamiento de patologías crónicas.</div>
+      </div>
+      <div class="scard sm reveal d3">
+        <svg class="sc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div class="sc-name">Laboratorio propio</div>
+        <div class="sc-desc">Análisis de sangre, orina y otros parámetros con resultados en el día.</div>
+      </div>
+    </div>
+
+    <!-- Row of 3 -->
+    <div class="services-row3" style="margin-top:1rem;">
+      <div class="scard sm reveal">
+        <svg class="sc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        <div class="sc-name">Acupuntura &amp; Homeopatía</div>
+        <div class="sc-desc">Medicina alternativa para el bienestar integral de tu compañero.</div>
+      </div>
+      <div class="scard sm reveal d1">
+        <svg class="sc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>
+        <div class="sc-name">Peluquería Canina</div>
+        <div class="sc-desc">Baño, corte y arreglo profesional con productos de primera calidad.</div>
+      </div>
+      <div class="scard sm reveal d2" style="display:flex; flex-direction:column; gap:0.9rem;">
+        <svg class="sc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <div class="sc-name">Farmacia &amp; Pet Shop</div>
+        <div class="sc-desc">Medicamentos, alimentos premium, accesorios y todo lo que tu mascota necesita.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="galeria">
+  <div class="gal-header reveal">
+    <div>
+      <span class="eyebrow" style="display:block; margin-bottom:0.8rem;">Nuestro espacio</span>
+      <h3>Conocé la clínica<br>y a nuestro <em>equipo</em>.</h3>
+    </div>
+    <div class="gal-swipe" id="galSwipe">
+      Ver más
+      <div class="gal-arr"><span style="display:inline-block; animation: none;">→</span></div>
+    </div>
+  </div>
+  <div class="gal-track" id="galTrack">
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=600&h=800&fit=crop&q=80" alt="Veterinario con perro" loading="lazy">
+      <div class="gal-cap"><span>Atención · Clínica</span><span class="gn">01</span></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4a?w=600&h=800&fit=crop&q=80" alt="Gato en consulta" loading="lazy">
+      <div class="gal-cap"><span>Felinos · Especialistas</span><span class="gn">02</span></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=800&fit=crop&q=80" alt="Veterinaria revisando" loading="lazy">
+      <div class="gal-cap"><span>Diagnóstico · General</span><span class="gn">03</span></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&h=800&fit=crop&q=80" alt="Perro saludable" loading="lazy">
+      <div class="gal-cap"><span>Mascotas · Felices</span><span class="gn">04</span></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=800&fit=crop&q=80" alt="Consulta veterinaria" loading="lazy">
+      <div class="gal-cap"><span>Consulta · Sede Yerbal</span><span class="gn">05</span></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1560743641-3914f2c45636?w=600&h=800&fit=crop&q=80" alt="Gato en revisión" loading="lazy">
+      <div class="gal-cap"><span>Revisión · Felinos</span><span class="gn">06</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="testimonios">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Reseñas verificadas</span>
+      <h2 class="stitle">Lo que dicen<br>nuestros <em>clientes</em>.</h2>
+    </div>
+
+    <div class="rev-summary reveal">
+      <div class="ggl-logo">
+        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Reseñas de Google
+      </div>
+      <div class="vline"></div>
+      <div>
+        <div class="rev-score">4.7</div>
+      </div>
+      <div>
+        <div class="rev-stars">★★★★★</div>
+        <div class="rev-count">+300 reseñas verificadas · 76% de 5 estrellas</div>
+      </div>
+      <a href="https://www.google.com/search?q=la+quinta+pata+mundovet+caballito" target="_blank" rel="noopener" class="rev-link">Ver en Google ↗</a>
+    </div>
+
+    <div class="revs-grid">
+      <div class="rev-card reveal">
+        <div class="rev-head">
+          <div class="rev-av a1">MG</div>
+          <div>
+            <div class="rev-author">María González</div>
+            <div class="rev-meta">4 reseñas · Local Guide</div>
+          </div>
+        </div>
+        <div class="rev-stars-row"><span class="st">★★★★★</span><span class="dt">hace 2 semanas</span></div>
+        <p class="rev-text">Llevé a mi perra Canela después de una mala cirugía en otro lado. Los veterinarios de La Quinta Pata la revisaron entera, me explicaron todo con paciencia. En dos semanas era otra. Son increíbles.</p>
+      </div>
+      <div class="rev-card reveal d1">
+        <div class="rev-head">
+          <div class="rev-av a2">CR</div>
+          <div>
+            <div class="rev-author">Carlos Ramos</div>
+            <div class="rev-meta">7 reseñas</div>
+          </div>
+        </div>
+        <div class="rev-stars-row"><span class="st">★★★★★</span><span class="dt">hace 1 mes</span></div>
+        <p class="rev-text">Mi gato tiene una enfermedad crónica y el seguimiento es impecable. Siempre disponibles para consultas. El laboratorio propio hace todo mucho más rápido. Sin dudas los mejores de Caballito.</p>
+      </div>
+      <div class="rev-card reveal d2">
+        <div class="rev-head">
+          <div class="rev-av a3">VT</div>
+          <div>
+            <div class="rev-author">Valentina Torres</div>
+            <div class="rev-meta">2 reseñas</div>
+          </div>
+        </div>
+        <div class="rev-stars-row"><span class="st">★★★★★</span><span class="dt">hace 3 semanas</span></div>
+        <p class="rev-text">Fui por la peluquería canina y quedé sorprendida. Mi labrador salió perfecto. Aproveché y le hicieron los análisis de rutina. El personal es muy amable y el lugar impecable. Muy recomendable.</p>
+      </div>
+      <div class="rev-card reveal d3">
+        <div class="rev-head">
+          <div class="rev-av a4">DF</div>
+          <div>
+            <div class="rev-author">Diego Fernández</div>
+            <div class="rev-meta">11 reseñas · Local Guide</div>
+          </div>
+        </div>
+        <div class="rev-stars-row"><span class="st">★★★★☆</span><span class="dt">hace 2 meses</span></div>
+        <p class="rev-text">Lugar limpio, organizado, los turnos se respetan. Tengo dos perros y siempre los atiendo acá. La farmacia tiene todo lo que necesito y la peluquería es excelente. 100% recomendado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Horarios & Contacto -->
+<section id="horarios">
+  <div class="container">
+    <div class="hor-grid">
+      <div class="reveal">
+        <p class="eyebrow" style="margin-bottom:1.1rem;">Horarios de atención</p>
+        <h2 class="stitle" style="margin-bottom:2.5rem;">Estamos <em>cuando</em><br>más lo necesitás.</h2>
+        <table class="hor-table">
+          <tr><td class="day">Lunes a Viernes</td><td class="time">9:00 – 18:00</td></tr>
+          <tr><td class="day">Sábados</td><td class="time">9:00 – 15:00</td></tr>
+          <tr><td class="day">Domingos</td><td class="closed">Cerrado</td></tr>
+        </table>
+        <p style="font-size:0.82rem; color:var(--muted); margin-top:1.2rem;">Para urgencias fuera de horario, consultá vía WhatsApp.</p>
+      </div>
+      <div class="reveal d2">
+        <p class="eyebrow" style="margin-bottom:1.1rem;">Cómo contactarnos</p>
+        <h2 class="stitle" style="margin-bottom:2.5rem;">Siempre <em>disponibles</em><br>para ayudarte.</h2>
+        <div class="contact-items">
+          <a href="https://wa.me/541131855874" target="_blank" rel="noopener" class="citem">
+            <div class="citem-ico">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1.1-.2.2-.3.2-.5.1-1.5-.7-2.4-1.3-3.4-3-.3-.4.3-.4.7-1.4.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3 2 3.1 4.9 4.3c1.7.7 2.4.8 3.3.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+            </div>
+            <div>
+              <div class="citem-lbl">WhatsApp</div>
+              <div class="citem-val">11 3185-5874</div>
+            </div>
+          </a>
+          <a href="tel:+541149242649" class="citem">
+            <div class="citem-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11 19.79 19.79 0 0 1 1.61 2.34 2 2 0 0 1 3.6.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 7.91a16 16 0 0 0 6.08 6.08l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="citem-lbl">Teléfono fijo</div>
+              <div class="citem-val">+54 11 4924-2649</div>
+            </div>
+          </a>
+          <a href="https://instagram.com/la_quintapata" target="_blank" rel="noopener" class="citem">
+            <div class="citem-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <div>
+              <div class="citem-lbl">Instagram</div>
+              <div class="citem-val">@la_quintapata · 3.500+ seguidores</div>
+            </div>
+          </a>
+          <a href="https://facebook.com/laquintapata.vet" target="_blank" rel="noopener" class="citem">
+            <div class="citem-ico">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </div>
+            <div>
+              <div class="citem-lbl">Facebook</div>
+              <div class="citem-val">facebook.com/laquintapata.vet</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mapa -->
+<section id="ubicacion" style="padding:0;">
+  <div class="map-intro reveal">
+    <span class="eyebrow">Dónde encontrarnos</span>
+    <h2 class="stitle">Dos sedes en<br><em>Caballito</em>, CABA.</h2>
+  </div>
+  <div class="sede-cards reveal d1">
+    <div class="sede-card">
+      <h4>Sede Principal</h4>
+      <p class="sad">Av. Pedro Goyena 389<br>esq. Beauchef</p>
+      <p class="ssub">Caballito · CABA</p>
+    </div>
+    <div class="sede-card">
+      <h4>Sucursal</h4>
+      <p class="sad">Yerbal 1074</p>
+      <p class="ssub">Caballito · CABA</p>
+    </div>
+  </div>
+  <div class="map-wrap reveal d2">
+    <div class="map-box">
+      <div class="map-sw">
+        <button class="map-btn active" data-sede="goyena">Sede Goyena</button>
+        <button class="map-btn" data-sede="yerbal">Sucursal Yerbal</button>
+      </div>
+      <iframe id="mapFrame"
+        src="https://www.google.com/maps?q=Av.+Pedro+Goyena+389,+Caballito,+Buenos+Aires&output=embed"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="La Quinta Pata · Mundovet - Ubicación"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contacto">
+  <div class="container">
+    <span class="eyebrow">¿Tu mascota necesita atención?</span>
+    <h2 class="stitle">Pedí tu turno<br><em>ahora mismo</em>.</h2>
+    <p class="lede">Escribinos por WhatsApp o llamanos directamente. Sin formularios, sin esperas — te respondemos enseguida.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/541131855874?text=Hola!%20Quiero%20pedir%20un%20turno%20en%20La%20Quinta%20Pata." target="_blank" rel="noopener" class="btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1.1-.2.2-.3.2-.5.1-1.5-.7-2.4-1.3-3.4-3-.3-.4.3-.4.7-1.4.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3 2 3.1 4.9 4.3c1.7.7 2.4.8 3.3.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        Escribir por WhatsApp
+      </a>
+      <a href="tel:+541149242649" class="btn-tel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11 19.79 19.79 0 0 1 1.61 2.34 2 2 0 0 1 3.6.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 7.91a16 16 0 0 0 6.08 6.08l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        4924-2649
+      </a>
+    </div>
+    <div class="soc-links">
+      <a href="https://instagram.com/la_quintapata" target="_blank" rel="noopener" class="soc-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @la_quintapata
+      </a>
+      <a href="https://facebook.com/laquintapata.vet" target="_blank" rel="noopener" class="soc-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        facebook.com/laquintapata.vet
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg viewBox="0 0 100 100"><ellipse cx="50" cy="62" rx="22" ry="18"/><ellipse cx="25" cy="42" rx="10" ry="8"/><ellipse cx="40" cy="32" rx="10" ry="8"/><ellipse cx="60" cy="32" rx="10" ry="8"/><ellipse cx="75" cy="42" rx="10" ry="8"/></svg>
+          <div class="foot-brand-name">La Quinta <span>Pata</span></div>
+        </div>
+        <p class="foot-tag">Mundovet · Veterinaria integral en Caballito, CABA. Cuidamos a tu mascota como si fuera nuestra.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Clínica General</a></li>
+          <li><a href="#servicios">Cirugías</a></li>
+          <li><a href="#servicios">Ecografías</a></li>
+          <li><a href="#servicios">Laboratorio</a></li>
+          <li><a href="#servicios">Peluquería</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Especialidades</h4>
+        <ul>
+          <li><a href="#servicios">Cardiología</a></li>
+          <li><a href="#servicios">Oftalmología</a></li>
+          <li><a href="#servicios">Fisioterapia</a></li>
+          <li><a href="#servicios">Acupuntura</a></li>
+          <li><a href="#servicios">Homeopatía</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/541131855874" target="_blank" rel="noopener">WhatsApp: 11 3185-5874</a></li>
+          <li><a href="tel:+541149242649">Tel: 4924-2649</a></li>
+          <li><a href="https://instagram.com/la_quintapata" target="_blank" rel="noopener">@la_quintapata</a></li>
+          <li><a href="#ubicacion">Goyena 389, Caballito</a></li>
+          <li><a href="#ubicacion">Yerbal 1074, Caballito</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 La Quinta Pata · Mundovet</span>
+      <span>Caballito · Buenos Aires · Argentina</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/541131855874?text=Hola!%20Quiero%20pedir%20un%20turno%20en%20La%20Quinta%20Pata." class="float-wa" target="_blank" rel="noopener" aria-label="WhatsApp La Quinta Pata">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1.1-.2.2-.3.2-.5.1-1.5-.7-2.4-1.3-3.4-3-.3-.4.3-.4.7-1.4.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3 2 3.1 4.9 4.3c1.7.7 2.4.8 3.3.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+</a>
+
+<script>
+// ── Loader ──
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('out');
+  }, 2600);
+});
+
+// ── Nav scroll ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// ── Scroll progress ──
+const prog = document.getElementById('scrollProg');
+window.addEventListener('scroll', () => {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  prog.style.width = (window.scrollY / max * 100) + '%';
+}, { passive: true });
+
+// ── Reveal on scroll ──
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+// ── Custom cursor ──
+const curDot  = document.getElementById('curDot');
+const curRing = document.getElementById('curRing');
+const curHalo = document.getElementById('curHalo');
+let mx = 0, my = 0, rx = 0, ry = 0, hx = 0, hy = 0;
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+(function animCursor() {
+  rx += (mx - rx) * 0.14;
+  ry += (my - ry) * 0.14;
+  hx += (mx - hx) * 0.08;
+  hy += (my - hy) * 0.08;
+  curDot.style.left  = mx + 'px';
+  curDot.style.top   = my + 'px';
+  curRing.style.left = rx + 'px';
+  curRing.style.top  = ry + 'px';
+  curHalo.style.left = hx + 'px';
+  curHalo.style.top  = hy + 'px';
+  requestAnimationFrame(animCursor);
+})();
+
+document.querySelectorAll('a, button, .scard, .gal-swipe').forEach(el => {
+  el.addEventListener('mouseenter', () => curRing.classList.add('hov'));
+  el.addEventListener('mouseleave', () => curRing.classList.remove('hov'));
+});
+
+// ── Paw canvas particles ──
+(function() {
+  const canvas = document.getElementById('pawCanvas');
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+
+  function drawPaw(x, y, sz, alpha, rot) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = '#1fd4bc';
+    ctx.translate(x, y);
+    ctx.rotate(rot);
+    // main pad
+    ctx.beginPath(); ctx.ellipse(0, sz*0.12, sz*0.28, sz*0.22, 0, 0, Math.PI*2); ctx.fill();
+    // toes
+    [[-0.32,-0.36,0.14,0.11],[-0.1,-0.46,0.13,0.105],[0.12,-0.46,0.13,0.105],[0.33,-0.36,0.12,0.10]].forEach(([tx,ty,rx,ry]) => {
+      ctx.beginPath(); ctx.ellipse(tx*sz, ty*sz, rx*sz, ry*sz, 0, 0, Math.PI*2); ctx.fill();
+    });
+    ctx.restore();
+  }
+
+  const PARTICLES = Array.from({ length: 28 }, () => ({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    sz:   6  + Math.random() * 18,
+    a:    0.025 + Math.random() * 0.065,
+    rot:  Math.random() * Math.PI * 2,
+    vx:  (Math.random() - 0.5) * 0.22,
+    vy:  (Math.random() - 0.5) * 0.22,
+    vr:  (Math.random() - 0.5) * 0.004,
+  }));
+
+  (function loop() {
+    ctx.clearRect(0, 0, W, H);
+    PARTICLES.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+      if (p.x < -50)  p.x = W + 50;
+      if (p.x > W+50) p.x = -50;
+      if (p.y < -50)  p.y = H + 50;
+      if (p.y > H+50) p.y = -50;
+      drawPaw(p.x, p.y, p.sz, p.a, p.rot);
+    });
+    requestAnimationFrame(loop);
+  })();
+})();
+
+// ── Equalizer bars ──
+(function() {
+  const eq = document.getElementById('equalizer');
+  for (let i = 0; i < 24; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'eq-bar';
+    const f = (0.15 + Math.random() * 0.3).toFixed(2);
+    const t = (0.65 + Math.random() * 0.35).toFixed(2);
+    const d = (0.4  + Math.random() * 0.7).toFixed(2);
+    bar.style.cssText = `--f:${f};--t:${t};--dur:${d}s;animation-delay:${(Math.random()*-1).toFixed(2)}s;`;
+    eq.appendChild(bar);
+  }
+})();
+
+// ── Count-up ──
+const countObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el     = entry.target;
+    const target = parseFloat(el.dataset.target);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const dur    = 1400;
+    const start  = performance.now();
+    (function step(now) {
+      const t = Math.min((now - start) / dur, 1);
+      const v = target * (1 - Math.pow(1 - t, 3));
+      el.textContent = prefix + Math.round(v) + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    })(start);
+    countObs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.count').forEach(c => countObs.observe(c));
+
+// ── Hero blob parallax ──
+const hero  = document.getElementById('hero');
+const blobs = document.querySelectorAll('.hblob');
+hero.addEventListener('mousemove', e => {
+  const r  = hero.getBoundingClientRect();
+  const cx = (e.clientX - r.left) - r.width  / 2;
+  const cy = (e.clientY - r.top)  - r.height / 2;
+  blobs.forEach(b => {
+    const d = parseFloat(b.dataset.depth || 0.04);
+    b.style.translate = `${cx * d}px ${cy * d}px`;
+  });
+}, { passive: true });
+
+// ── Magnetic buttons ──
+document.querySelectorAll('.magnetic').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width  / 2;
+    const y = e.clientY - r.top  - r.height / 2;
+    btn.style.transform = `translate(${x*0.2}px, ${y*0.28}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+// ── Service card light effect ──
+document.querySelectorAll('.scard').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r  = card.getBoundingClientRect();
+    const mx = ((e.clientX - r.left) / r.width  * 100).toFixed(1) + '%';
+    const my = ((e.clientY - r.top)  / r.height * 100).toFixed(1) + '%';
+    card.style.setProperty('--mx', mx);
+    card.style.setProperty('--my', my);
+  });
+});
+
+// ── Price-card tilt ──
+document.querySelectorAll('.rev-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r  = card.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width  - 0.5;
+    const py = (e.clientY - r.top)  / r.height - 0.5;
+    card.style.transform = `translateY(-4px) rotateX(${-py*4}deg) rotateY(${px*4}deg)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+document.querySelector('.revs-grid').style.perspective = '1200px';
+
+// ── Gallery drag ──
+const track = document.getElementById('galTrack');
+let isDn = false, startX, scrollL;
+track.addEventListener('mousedown',  e => { isDn = true; startX = e.pageX - track.offsetLeft; scrollL = track.scrollLeft; });
+track.addEventListener('mouseleave', () => { isDn = false; });
+track.addEventListener('mouseup',    () => { isDn = false; });
+track.addEventListener('mousemove',  e => {
+  if (!isDn) return;
+  e.preventDefault();
+  track.scrollLeft = scrollL - (e.pageX - track.offsetLeft - startX) * 1.5;
+}, { passive: false });
+document.getElementById('galSwipe').addEventListener('click', () => {
+  track.scrollBy({ left: 320, behavior: 'smooth' });
+});
+
+// ── Map switcher ──
+const mapFrame = document.getElementById('mapFrame');
+const mapURLs  = {
+  goyena: 'https://www.google.com/maps?q=Av.+Pedro+Goyena+389,+Caballito,+Buenos+Aires&output=embed',
+  yerbal: 'https://www.google.com/maps?q=Yerbal+1074,+Caballito,+Buenos+Aires&output=embed',
+};
+document.querySelectorAll('.map-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.map-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    mapFrame.src = mapURLs[btn.dataset.sede];
+  });
+});
+</script>
+</body>
+</html>
